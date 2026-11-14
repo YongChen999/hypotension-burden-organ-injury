@@ -25,7 +25,7 @@ All scripts live in `code/`. Run them from the repository root, for example `pyt
 | 2b | `41b_organ_rcs.py` | Restricted cubic spline (RCS) curves for AKI & in-hospital death → `organ_rcs_curve.csv` |
 | 3 | `42_mins_figures.R` | MINS RCS spline & category-proportion figures |
 | 3b | `42b_organ_fig.R` | Fig. 2 organ-injury dose–response (AKI + death) two-panel figure |
-| 4 | `43_mins_fig1.py` | Cohort flow diagram (Fig. 1) |
+| 4 | `61_r_fig1_flow.R` | Cohort flow diagram (Fig. 1), R implementation; `43_mins_fig1.py` is the earlier Python version and is superseded |
 | 5 | `45_mins_tables.py` | Main tables (baseline, primary results, sensitivity) |
 | 6 | `46_mins_manuscript.py` | Manuscript (`Manuscript_MINS.docx`) |
 | 7 | `47_mins_supplementary.py` | Supplementary material (`Additional_file_MINS.docx`) |
@@ -40,9 +40,10 @@ All scripts live in `code/`. Run them from the repository root, for example `pyt
 | S9 | `57_abdo_rebuild.py` | Parallel abdominal cohort (INSPIRE): assembly from platform exports → `abdo_full_cohort.csv` |
 | S10 | `58_r_abdo_interaction.R` | Abdominal cohort: emergency-by-burden interaction tests (MINS, AKI) |
 | S11 | `58b_r_abdo_models.R` | Abdominal cohort: elective model ladder + supplementary Table S6 |
+| S12 | `59_r_aki_cc_duration.R` | AKI complete-case sensitivity and models additionally adjusted for anaesthesia duration → Table S7 |
 
 `common.py` is a shared helper imported by the Python scripts.
-The repository also includes auxiliary R/Python scripts used for intermediate data checks and figures: `30_r_check.R`, `31_r_figures.R` (cross-platform data validation/figures), `41b_organ_rcs.py` (organ-injury RCS curves), and `55b_merge_ipw.py` (IPW table merge).
+The repository also includes auxiliary R/Python scripts used for intermediate data checks and figures: `30_r_check.R`, `31_r_figures.R` (cross-platform data validation/figures), `41b_organ_rcs.py` (organ-injury RCS curves), `55b_merge_ipw.py` (IPW table merge), `55c_r_ipw_ess.R` (effective sample size after weight truncation), and `60_package_v11.py` (assembles the submission package from the generated outputs).
 
 > **Note on data extraction:** the scripts above operate on already-exported cohort CSV files. The retrieval scripts that query the non-public analysis interface used to obtain those extracts are intentionally **not** included in this repository, because that interface is not publicly endorsed. Investigators with approved access to INSPIRE and MOVER can re-export the required variables and re-run the analysis scripts directly.
 
