@@ -911,9 +911,10 @@ para(doc, "The data that support the findings of this study are not publicly ava
           "National University Hospital) and MOVER (University of California, Irvine) are restricted-access "
           "research databases, released only under a data use agreement with the respective provider. The "
           "analysis code is publicly available at "
-          "https://github.com/YongChen999/hypotension-burden-organ-injury, and the aggregate analytic "
-          "outputs (tables, figure coordinates and model coefficients) are available from the corresponding "
-          "author.")
+          "https://github.com/YongChen999/hypotension-burden-organ-injury and archived at Zenodo "
+          "(https://doi.org/10.5281/zenodo.2420362); the aggregate analytic outputs (tables, figure "
+          "coordinates and model coefficients) are archived at Zenodo "
+          "(https://doi.org/10.5281/zenodo.24211311).")
 h2(doc, "Competing interests")
 para(doc, "The authors declare that they have no competing interests.")
 h2(doc, "Funding")
