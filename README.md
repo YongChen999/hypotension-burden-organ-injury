@@ -16,6 +16,8 @@ This repository contains the analysis code for the manuscript
 
 ## Pipeline (run in order)
 
+All scripts live in `code/`. Run them from the repository root, for example `python code/40_mins_cohort.py` or `Rscript code/42_mins_figures.R`.
+
 | Step | Script | Purpose |
 |------|--------|---------|
 | 1 | `40_mins_cohort.py` | Build derivation (INSPIRE) & validation (MOVER) MINS cohorts; eligibility, exposure, outcomes, covariates |
