@@ -27,8 +27,6 @@ All scripts live in `code/`. Run them from the repository root, for example `pyt
 | 3b | `42b_organ_fig.R` | Fig. 2 organ-injury dose–response (AKI + death) two-panel figure |
 | 4 | `61_r_fig1_flow.R` | Cohort flow diagram (Fig. 1), R implementation; `43_mins_fig1.py` is the earlier Python version and is superseded |
 | 5 | `45_mins_tables.py` | Main tables (baseline, primary results, sensitivity) |
-| 6 | `46_mins_manuscript.py` | Manuscript (`Manuscript_MINS.docx`) |
-| 7 | `47_mins_supplementary.py` | Supplementary material (`Additional_file_MINS.docx`) |
 | S1 | `48_r_cluster_check.R` | Patient-level clustering robustness (sandwich SE) |
 | S2 | `51_r_consistency_check.R` | Cross-database consistency checks |
 | S3 | `52_r_full_recompute.R` | Full independent recomputation of effect estimates |
@@ -43,7 +41,7 @@ All scripts live in `code/`. Run them from the repository root, for example `pyt
 | S12 | `59_r_aki_cc_duration.R` | AKI complete-case sensitivity and models additionally adjusted for anaesthesia duration → Table S7 |
 
 `common.py` is a shared helper imported by the Python scripts.
-The repository also includes auxiliary R/Python scripts used for intermediate data checks and figures: `30_r_check.R`, `31_r_figures.R` (cross-platform data validation/figures), `41b_organ_rcs.py` (organ-injury RCS curves), `55b_merge_ipw.py` (IPW table merge), `55c_r_ipw_ess.R` (effective sample size after weight truncation), and `60_package_v11.py` (assembles the submission package from the generated outputs).
+The repository also includes auxiliary R/Python scripts used for intermediate data checks and figures: `30_r_check.R`, `31_r_figures.R` (cross-platform data validation/figures), `41b_organ_rcs.py` (organ-injury RCS curves), `55b_merge_ipw.py` (IPW table merge), and `55c_r_ipw_ess.R` (effective sample size after weight truncation).
 
 > **Note on data extraction:** the scripts above operate on already-exported cohort CSV files. The retrieval scripts that query the non-public analysis interface used to obtain those extracts are intentionally **not** included in this repository, because that interface is not publicly endorsed. Investigators with approved access to INSPIRE and MOVER can re-export the required variables and re-run the analysis scripts directly.
 
@@ -59,7 +57,7 @@ The repository also includes auxiliary R/Python scripts used for intermediate da
 2. Run the scripts in the order shown above, from the repository root. R scripts resolve paths via
    `Sys.getenv("STUDY_ROOT")`, falling back to the working directory; export `STUDY_ROOT` if you run
    them from elsewhere.
-3. `46_mins_manuscript.py` / `47_mins_supplementary.py` emit the submitted `.docx` files; convert to PDF with Word (File → Save As → PDF).
+3. Tables are written as CSV to `output/tables/en/` and figures as vector files to `output/figures/`; these are the source of every number and panel in the manuscript and its supplementary material.
 
 ## License
 
