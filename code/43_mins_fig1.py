@@ -98,12 +98,12 @@ column(LX,
     "Excluded (n = 34):\n"
     "\u2022 missing ASA class (n = 33)\n"
     "\u2022 missing baseline creatinine (n = 1)\n"
-    "BMI imputed to cohort median (n = 12)",
+    "(retained: BMI imputed, n = 12)",
     "Primary MINS analysis\n"
     "n = 434 monitored patients\n"
     "MINS 155 (35.7%)",
     "Not monitored\nn = 9,534 (95.3%)\nMINS not\nascertainable",
-    "Full cohort \u2014 secondary outcomes (all patients):\n"
+    "Secondary-outcome model cohorts\n(complete covariates; no troponin required):\n"
     "AKI n = 8,306, 317 events (3.8%);\n"
     "in-hospital death n = 9,491, 94 events (1.0%)")
 
@@ -118,12 +118,12 @@ column(RX,
     "Excluded (n = 4):\n"
     "\u2022 no intraoperative MAP record\n"
     "   (burden unavailable)\n"
-    "BMI imputed to cohort median (n = 21)",
+    "(retained: BMI imputed, n = 21)",
     "Primary MINS analysis\n"
     "n = 226 monitored patients\n"
     "MINS 102 (45.1%)",
     "Not monitored\nn = 6,710 (96.7%)\nMINS not\nascertainable",
-    "Full cohort \u2014 secondary outcomes (all patients):\n"
+    "Secondary-outcome model cohorts\n(complete covariates; no troponin required):\n"
     "AKI n = 5,351, 780 events (14.6%);\n"
     "in-hospital death n = 6,199, 20 events (0.3%)")
 
@@ -131,7 +131,8 @@ ax.text(LX, 2.05,
         "MINS = myocardial injury after noncardiac surgery (INSPIRE: peak cTnI >0.026 ng/mL within 72 h;\n"
         "MOVER: platform-derived MINS flag). AKI = KDIGO stage 1+ within 7 days. MAP = mean arterial pressure.\n"
         "Troponin was measured at the discretion of the treating team, not per protocol; the primary analysis is\n"
-        "therefore restricted to the monitored branch, whereas the secondary outcomes are ascertained in everyone.",
+        "restricted to the monitored branch. Secondary-outcome model samples require complete covariates but not\n"
+        "troponin monitoring; AKI additionally requires evaluable pre- and postoperative creatinine.",
         fontsize=5.6, color="#444", va="top", linespacing=1.55)
 
 fig.savefig(os.path.join(FIG, "MINS_Fig1_flow.png"), dpi=300,

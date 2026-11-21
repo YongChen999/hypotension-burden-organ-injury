@@ -45,7 +45,9 @@ ggsave(file.path(FIG, "MINS_FigS4_dose.png"), p3, width = 180, height = 120, uni
 
 # ---------- Fig 4: 冻结模型在 MOVER 的 ROC + 校准 ----------
 vp <- read.csv(file.path(TAB, "mins_val_pred.csv"))
-roc <- function(y, p) { o <- order(p); y <- y[o]; p <- p[o]
+# ROC 必须按预测概率**降序**累积：阈值从高到低，TPR/FPR 才由 (0,0) 走向 (1,1)。
+# 之前用升序，曲线整体落在对角线下方，与 AUC 0.682 矛盾。
+roc <- function(y, p) { o <- order(p, decreasing = TRUE); y <- y[o]
   TPR <- cumsum(y)/sum(y); FPR <- cumsum(1-y)/sum(1-y)
   rbind(c(0,0), data.frame(fpr = FPR, tpr = TPR)) }
 rr <- roc(vp$y, vp$p)
@@ -58,9 +60,10 @@ p4a <- ggplot(rr, aes(fpr, tpr)) + geom_step(linewidth = 0.85, colour = "#C0504D
            label = sprintf("AUC %.3f (%.2f%s%.2f)", auc, vm$auc_frozen_lo, dash, vm$auc_frozen_hi)) +
   labs(x = paste0("1 ", minus, " specificity"), y = "Sensitivity") + th
 vp <- vp[order(vp$p), ]
-# 修正：ceiling 浮点误差会让最后 1 个观测落入第 11 组（孤点 decile）；
-# 改用 rep 均匀分组，保证恰好 10 个十分位组
-vp$g <- rep(1:10, length.out = nrow(vp))
+# 十分位分组：已按 p 升序排列，必须按**位置**切成 10 个连续等长段。
+# 错误的写法是 rep(1:10, length.out = n)：那是 1,2,...,10,1,2,... 的循环取模，
+# 每组都横跨整个风险分布，导致 10 个校准点全部挤在均值附近（本研究曾出现此 bug）。
+vp$g <- cut(seq_len(nrow(vp)), breaks = 10, labels = FALSE)
 # 校准截距：与 41/45 号同法（logit(observed) ~ logit(predicted) 的截距）
 .lp <- qlogis(pmin(pmax(vp$p, 1e-6), 1 - 1e-6))
 .calreg <- glm(vp$y ~ .lp, family = binomial())

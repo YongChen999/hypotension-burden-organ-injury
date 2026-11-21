@@ -1,10 +1,7 @@
 # 61_r_fig1_flow.R
 # MINS 论文 Fig. 1 队列流程图 —— 43_mins_fig1.py 的 R/grid 移植版（2026-11-13）
-# 相对 Python 版的文字修订：
-#   * 底注 "ascertained in everyone" -> "ascertained without troponin monitoring
-#     (AKI in patients with evaluable creatinine; death in all patients)"
-#   * 全队列结局框 "(all patients)" -> "(no troponin monitoring required)"
-#   * 排除框内 BMI 插补行改为 "(retained: BMI imputed ...)"，不再冒充排除原因
+# 文字口径：底部结局框为完整协变量模型队列，不要求肌钙蛋白监测；
+# AKI 另需可评价的术前/术后肌酐。排除框内 BMI 插补行是保留而非排除原因。
 suppressPackageStartupMessages(library(grid))
 
 OUT <- "output"; FIG <- file.path(OUT, "figures", "submission")
@@ -88,8 +85,8 @@ column_(LX,
          "n = 434 monitored patients\n",
          "MINS 155 (35.7%)"),
   "Not monitored\nn = 9,534 (95.3%)\nMINS not\nascertainable",
-  paste0("Full cohort ", emdash, " secondary outcomes\n",
-         "(no troponin monitoring required):\n",
+  paste0("Secondary-outcome model cohorts\n",
+         "(complete covariates; no troponin required):\n",
          "AKI n = 8,306, 317 events (3.8%);\n",
          "in-hospital death n = 9,491, 94 events (1.0%)"))
 
@@ -109,16 +106,16 @@ column_(RX,
          "n = 226 monitored patients\n",
          "MINS 102 (45.1%)"),
   "Not monitored\nn = 6,710 (96.7%)\nMINS not\nascertainable",
-  paste0("Full cohort ", emdash, " secondary outcomes\n",
-         "(no troponin monitoring required):\n",
+  paste0("Secondary-outcome model cohorts\n",
+         "(complete covariates; no troponin required):\n",
          "AKI n = 5,351, 780 events (14.6%);\n",
          "in-hospital death n = 6,199, 20 events (0.3%)"))
 
 grid.text(paste0("MINS = myocardial injury after noncardiac surgery (INSPIRE: peak cTnI >0.026 ng/mL within 72 h;\n",
                  "MOVER: platform-derived MINS flag). AKI = KDIGO stage 1+ within 7 days. MAP = mean arterial pressure.\n",
                  "Troponin was measured at the discretion of the treating team, not per protocol; the primary analysis is\n",
-                 "therefore restricted to the monitored branch, whereas the secondary outcomes are ascertained without\n",
-                 "troponin monitoring (AKI in patients with evaluable creatinine; death in all patients)."),
+                 "restricted to the monitored branch. Secondary-outcome model samples require complete covariates but not\n",
+                 "troponin monitoring; AKI additionally requires evaluable pre- and postoperative creatinine."),
           x = unit(LX, "native"), y = unit(2.02, "native"), just = c("left", "top"),
           gp = gpar(fontsize = 5.6, col = "#444444", lineheight = 1.3))
 
